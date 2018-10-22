@@ -1,0 +1,151 @@
+body {
+    margin: 0 auto;
+    text-align: center;
+}
+.main {
+    width: 100%;
+    margin: 0 auto;
+}
+.top {
+    width: 99%;
+    height: 100px;
+    text-align: center;
+    margin: 1px auto;
+    border: 1px solid #003;
+}
+.bot {
+    width: 99%;
+    height: 44px;
+    text-align: center;
+    margin: 1px auto;
+    border: 1px solid #003;
+    background-color:cornflowerblue;
+    line-height: 44px;
+}
+.layer_one {
+    width: 99%;
+    height: 35px;
+    margin: 1px auto;
+    line-height: 35px;
+    text-align: left;
+    text-indent: 5px;
+    border: 1px solid #003;
+    background-color: aquamarine;
+}
+.center_holder {
+    width: 99%;
+    height: 748px;
+    text-align: center;
+    margin: 0px auto;
+    border: 1px solid darkgray;
+}
+.left {
+    float: left;
+    width: 20%;
+    height: 200px;
+    margin-top: 1px auto;
+    border: 1px solid #003;
+    background-color:darkgray
+}
+.main_title {
+    width:100%;
+    height: 20px;
+    margin-top: 18px;
+    background-color:burlywood;
+}
+.title {
+    width: 100%;
+    height: 25px;
+    color: crimson;
+    font-size: x-large;
+    background-color: burlywood;
+}
+.title_bottom {
+    width: 100%;
+    height: 20px;
+    background-color: burlywood;
+}
+.user {
+    width: 15%;
+    height: 100%;
+    line-height: 35px;
+    float:right;
+    background-color:antiquewhite;
+}
+.user_img {
+    width: 38px;
+    height: 100%;
+    float: right;
+    background-image: url("default_user.png");
+    background-size: contain;
+}
+.select_list {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+.select_list select {
+    width: 30%;
+    margin-left: 5px;
+}
+.pace {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+.pace input {
+    width: 30%;
+    margin-left: 53px;
+}
+.start {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+.start input {
+    width: 30%;
+    margin-left: 13px;
+}
+.des {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+.des input {
+    width: 30%;
+    margin-left: 37px;
+}
+.construct {
+    width: 100%;
+    height: 70px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+    background-color:antiquewhite;
+}
+.construct button {
+    width: 45%;
+    margin-top: 10px;
+    margin-left: 80px;
+}
+.center {
+    float: right;
+    width: 79.7%;
+    height: 745px;
+    text-align: center;
+    border: 1px solid #003;
+}
+ 
