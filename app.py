@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template
 import os.path
 import api
 
@@ -49,13 +49,4 @@ def api_demo_result():
     distance = response['rows'][0]['elements'][0]['distance']['text']
     duration = response['rows'][0]['elements'][0]['duration']['text']
 
-
-    return '''
-<html>
-    <body>
-        From: %s<br>
-        To: %s<br>
-        Distance: %s<br>
-        Duration: %s
-    </body>
-</html>''' % (origin_formatted,destination_formatted,distance,duration)
+    return render_template('result.html',origin=origin_formatted, destination=destination_formatted, distance=distance, duration=duration)
