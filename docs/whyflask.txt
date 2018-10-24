@@ -1,0 +1,16 @@
+Prototype Deliverable
+
+A document explaining why you chose the technology stack that you are
+demonstrating; I’d like to know if you considered other stacks, and the process you
+used to choose the stack for the prototype. The doc should be added to your ‘docs’
+folder on github.
+
+Why flask?
+Flask is a lightweight framework that is easy for everyone in our group to pick up.
+Many group members have prior experience with flask. There are many boilerplate code
+and template available and it's fast for us to get a simple prototype up and running.
+
+Have we considered other stacks?
+We have considered Javascript/Node.js for the backend server. However, most of us seem to more familiar
+with Python. Since Scalability/ Performance isn't really too much of an issue for this project, we decided
+to stick with Flask.
