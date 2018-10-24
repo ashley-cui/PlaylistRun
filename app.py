@@ -37,6 +37,13 @@ def api_demo_result():
     destination = request.args.get('destination')
     response = api.get_distance_matrix(origin, destination)
 
+    print(response)
+
+    status = response['rows'][0]['elements'][0]['status']
+
+    if status == 'ZERO_RESULTS' or status == 'NOT_FOUND':
+        return 'Error finding route'
+
     origin_formatted = response['origin_addresses'][0]
     destination_formatted = response['destination_addresses'][0]
     distance = response['rows'][0]['elements'][0]['distance']['text']
