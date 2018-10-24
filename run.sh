@@ -1,6 +1,9 @@
 #!/bin/bash
 
-source .env
-export FLASK_APP=app.py
-export FLASK_DEBUG=1
+# Set environment variables from .env file
+set -a
+[ -f .env ] && source .env
+set +a
+
+# Launch flask server
 flask run
