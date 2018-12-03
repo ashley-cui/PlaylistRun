@@ -1,6 +1,7 @@
-from flask import Flask, request, Response, render_template
+from flask import Flask, request, Response, render_template,redirect
 import os.path
 import api
+import spotauth
 
 def root_dir():  # pragma: no cover
     return os.path.abspath(os.path.dirname(__file__))
@@ -50,3 +51,30 @@ def api_demo_result():
     duration = response['rows'][0]['elements'][0]['duration']['text']
 
     return render_template('result.html',origin=origin_formatted, destination=destination_formatted, distance=distance, duration=duration)
+@app.route('/spot')
+def spot():
+    signin=spotauth.auth()
+    return redirect(signin)
+@app.route('/callback')
+def callback():
+    r=spotauth.songs(request.url)
+
+    return render_template('authsuccess.html',stuff=r)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
