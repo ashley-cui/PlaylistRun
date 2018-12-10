@@ -27,13 +27,15 @@ class sp:
 		# if not token_info:
 		auth_url = self.sp_oauth.get_authorize_url()
 		return auth_url
-	def songs(self,url):
-		lst=[]
+	def callback(self,url):
 		code = self.sp_oauth.parse_response_code(url)
 		token_info = self.sp_oauth.get_access_token(code)
 		token=token_info['access_token']
-		sp = spotipy.Spotify(auth=token)
-		results = sp.current_user_playlists(limit=5)
+		self.sp = spotipy.Spotify(auth=token)
+		return
+	def playlist(self):
+		results = self.sp.current_user_playlists(limit=5)
+		lst=[]
 		for i, item in enumerate(results['items']):
 			lst.append(item['name'])
 		return lst

@@ -58,7 +58,8 @@ def spot():
     return redirect(signin)
 @app.route('/callback')
 def callback():
-    r=sp.songs(request.url)
+    sp.callback(request.url)
+    r=sp.playlist()
 
     return render_template('authsuccess.html',stuff=r)
 
