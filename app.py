@@ -1,7 +1,9 @@
-from flask import Flask, request, Response, render_template,redirect
+from flask import Flask, request, Response, render_template,redirect,session
 import os.path
 import api
 import spotauth
+
+
 
 def root_dir():  # pragma: no cover
     return os.path.abspath(os.path.dirname(__file__))
@@ -20,7 +22,7 @@ def get_file(filename):  # pragma: no cover
 
 
 app = Flask(__name__)
-
+app.secret_key="hi"
 @app.route('/')
 def index():
     content = get_file('static/index.html')
@@ -51,6 +53,28 @@ def api_demo_result():
     duration = response['rows'][0]['elements'][0]['duration']['text']
 
     return render_template('result.html',origin=origin_formatted, destination=destination_formatted, distance=distance, duration=duration)
+
+@app.route('/login')
+def login():
+    if 'username' in session:
+        username = session['username']
+        return 'Logged in as ' + username + '<br>'
+
+    rend=get_file('static/login.html')
+    return Response(rend, mimetype="text/html")
+
+@app.route('/login/result',methods=['POST'])
+def loginr():
+    name = request.form['name']
+    session['username']=name
+    return render_template('authsuccess.html',stuff=session['username'])
+@app.route('/logout')
+def logout():
+   # remove the username from the session if it is there
+   session.pop('username', None)
+   return redirect('/login')
+
+
 @app.route('/spot')
 def spot():
     signin=spotauth.auth()

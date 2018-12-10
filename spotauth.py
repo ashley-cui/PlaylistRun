@@ -9,15 +9,17 @@ import os
 from spotipy import oauth2
 import spotipy
 
+
+
 class spot:
-	def __init__(self):
+	def __init__(self,username):
 		client_id = os.environ["SPOTIPY_CLIENT_ID"]
 		client_secret = os.environ["SPOTIPY_CLIENT_SECRET"]
 		redirect_uri = os.environ["SPOTIPY_REDIRECT_URI"]
 		scope = 'playlist-read-private'
 
 		cache_path =".cache-" + username
-		sp_oauth = oauth2.SpotifyOAuth(client_id, client_secret, redirect_uri, 
+		self.sp_oauth = oauth2.SpotifyOAuth(client_id, client_secret, redirect_uri, 
         scope=scope, cache_path=cache_path)
 
 
@@ -37,6 +39,7 @@ class spot:
 			lst.append(item['name'])
 		return lst
 		
+
 
 
 
