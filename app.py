@@ -1,7 +1,8 @@
-from flask import Flask, request, Response, render_template,redirect
+from flask import Flask, request, Response, render_template,redirect,session
 import os.path
 import api
 from spotauth import sp
+
 
 def root_dir():  # pragma: no cover
     return os.path.abspath(os.path.dirname(__file__))
@@ -20,6 +21,7 @@ def get_file(filename):  # pragma: no cover
 
 
 app = Flask(__name__)
+app.secret_key="hdfg"
 sp=sp('dfajkghjkd')
 
 @app.route('/')
@@ -62,6 +64,31 @@ def callback():
     r=sp.playlist()
 
     return render_template('authsuccess.html',stuff=r)
+
+@app.route('/login')
+def login():
+    if 'username' in session:  #check if session is alive 
+        username = session['username']
+        return 'Logged in as ' + username + '<br>' + \
+         "<b><a href = '/logout'>click here to log out</a></b>"
+
+
+    rend=get_file('static/login.html')
+    return Response(rend, mimetype="text/html")
+
+@app.route('/login/result',methods=['POST'])
+def loginr():
+    name = request.form['name'] #get username from form
+    session['username']=name #create session with username
+
+    return 'Logged in as ' + session['username'] + '<br>' + \
+         "<b><a href = '/logout'>click here to log out</a></b>"
+@app.route('/logout')
+def logout():
+   # end session
+   session.pop('username', None)
+   return redirect('/login')
+
 
 
 
