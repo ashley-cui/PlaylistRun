@@ -56,21 +56,25 @@ def api_demo_result():
 
 @app.route('/login')
 def login():
-    if 'username' in session:
+    if 'username' in session:  #check if session is alive 
         username = session['username']
-        return 'Logged in as ' + username + '<br>'
+        return 'Logged in as ' + username + '<br>' + \
+         "<b><a href = '/logout'>click here to log out</a></b>"
+
 
     rend=get_file('static/login.html')
     return Response(rend, mimetype="text/html")
 
 @app.route('/login/result',methods=['POST'])
 def loginr():
-    name = request.form['name']
-    session['username']=name
-    return render_template('authsuccess.html',stuff=session['username'])
+    name = request.form['name'] #get username from form
+    session['username']=name #create session with username
+
+    return 'Logged in as ' + session['username'] + '<br>' + \
+         "<b><a href = '/logout'>click here to log out</a></b>"
 @app.route('/logout')
 def logout():
-   # remove the username from the session if it is there
+   # end session
    session.pop('username', None)
    return redirect('/login')
 
