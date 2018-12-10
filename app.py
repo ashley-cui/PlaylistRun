@@ -1,7 +1,7 @@
 from flask import Flask, request, Response, render_template,redirect
 import os.path
 import api
-import spotauth
+from spotauth import sp
 
 def root_dir():  # pragma: no cover
     return os.path.abspath(os.path.dirname(__file__))
@@ -20,6 +20,7 @@ def get_file(filename):  # pragma: no cover
 
 
 app = Flask(__name__)
+sp=sp('dfajkghjkd')
 
 @app.route('/')
 def index():
@@ -53,11 +54,11 @@ def api_demo_result():
     return render_template('result.html',origin=origin_formatted, destination=destination_formatted, distance=distance, duration=duration)
 @app.route('/spot')
 def spot():
-    signin=spotauth.auth()
+    signin=sp.auth()
     return redirect(signin)
 @app.route('/callback')
 def callback():
-    r=spotauth.songs(request.url)
+    r=sp.songs(request.url)
 
     return render_template('authsuccess.html',stuff=r)
 
