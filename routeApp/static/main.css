@@ -1,0 +1,261 @@
+body {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.top {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    margin: 1px auto;
+    border: 1px solid #003;
+}
+
+.bot {
+    width: 100%;
+    height: 44px;
+    float: left;
+    text-align: center;
+    margin: 1px auto;
+    border: 1px solid #003;
+    background-color: cornflowerblue;
+    line-height: 44px;
+}
+
+.layer_one {
+    width: 100%;
+    height: 35px;
+    margin: 1px auto;
+    line-height: 35px;
+    text-align: left;
+    text-indent: 5px;
+    border: 1px solid #003;
+    background-color: aquamarine;
+}
+
+.center_holder {
+    width: 100%;
+    height: 748px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.left {
+    float: left;
+    width: 20%;
+    height: 748px;
+    margin-top: 1px auto;
+    background-color:aliceblue;
+}
+
+.main_title {
+    width: 100%;
+    height: 20px;
+    margin-top: 18px;
+    background-color: burlywood;
+}
+
+.title {
+    width: 100%;
+    height: 25px;
+    color: crimson;
+    font-size: x-large;
+    background-color: burlywood;
+}
+
+.title_bottom {
+    width: 100%;
+    height: 20px;
+    background-color: burlywood;
+}
+
+.user {
+    width: 15%;
+    height: 100%;
+    line-height: 35px;
+    float: right;
+    background-color: antiquewhite;
+}
+
+.user_img {
+    width: 38px;
+    height: 100%;
+    float: right;
+    //background-image: url("default_user.png");
+    background-size: contain;
+}
+
+.select_list {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+
+.select_list select {
+    width: 30%;
+    margin-left: 5px;
+}
+
+.pace {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+
+.friends_head {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+
+.search {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+
+.addablum {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+}
+
+.center {
+    float: right;
+    width: 80%;
+    height: 745px;
+    text-align: left;
+    text-indent: 5px;
+    background-color: cadetblue;
+}
+
+.reg {
+    float: left;
+    width: 50%;
+    height: 200px;
+    margin: 1px auto;
+    line-height: 35px;
+    text-align: center;
+    text-indent: 5px;
+    background-color: azure;
+}
+
+.reg_ {
+    float: right;
+    width: 50%;
+    height: 200px;
+    margin: 1px auto;
+    line-height: 35px;
+    text-align: center;
+    text-indent: 5px;
+    background-color: azure;
+}
+
+.reg div {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: right;
+}
+
+.reg_ div {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+}
+
+.reg_ input {
+    width: 10%;
+    margin-left: 10px;
+}
+
+.reg_ button {
+    margin-left: 10px;
+}
+
+.reg_ a {
+    margin-left: 10px;
+    background-color:azure;
+}
+
+.log {
+    float: left;
+    width: 50%;
+    height: 130px;
+    margin: 1px auto;
+    line-height: 35px;
+    text-align: center;
+    text-indent: 5px;
+    background-color: azure;
+}
+
+.log_ {
+    float: right;
+    width: 50%;
+    height: 130px;
+    margin: 1px auto;
+    line-height: 35px;
+    text-align: center;
+    text-indent: 5px;
+    background-color: azure;
+}
+
+.log div {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: right;
+}
+
+.log_ div {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+}
+
+.center div {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+}
+
+.log_ input {
+    width: 10%;
+    margin-left: 10px;
+}
+
+.log_ button {
+    margin-left: 10px;
+}
+
+.log_ a {
+    margin-left: 10px;
+}
