@@ -10,7 +10,7 @@ from spotipy import oauth2
 import spotipy
 
 
-class sp:
+class spt:
 	def __init__(self,username):
 		client_id = os.environ["SPOTIPY_CLIENT_ID"]
 		client_secret = os.environ["SPOTIPY_CLIENT_SECRET"]
