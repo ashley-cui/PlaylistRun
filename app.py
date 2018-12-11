@@ -1,6 +1,8 @@
-from flask import Flask, request, Response, render_template
+from flask import Flask, request, Response, render_template,redirect,session
 import os.path
 import api
+from spotauth import spt
+
 
 def root_dir():  # pragma: no cover
     return os.path.abspath(os.path.dirname(__file__))
@@ -19,6 +21,8 @@ def get_file(filename):  # pragma: no cover
 
 
 app = Flask(__name__)
+app.secret_key="hdfg"
+global sp
 
 @app.route('/')
 def index():
@@ -50,3 +54,58 @@ def api_demo_result():
     duration = response['rows'][0]['elements'][0]['duration']['text']
 
     return render_template('result.html',origin=origin_formatted, destination=destination_formatted, distance=distance, duration=duration)
+@app.route('/spot')
+def spot():
+    global sp
+    if 'username' not in session:
+        return 'Please log in' + '<br>' + \
+         "<b><a href = '/login'>click here to log in</a></b>"
+    sp=spt(session['username'])
+    signin=sp.auth()
+    return redirect(signin)
+@app.route('/callback')
+def callback():
+    global sp
+    if 'username' not in session:
+        return 'Please log in' + '<br>' + \
+         "<b><a href = '/login'>click here to log in</a></b>"
+    sp.callback(request.url)
+    r=sp.playlist()
+
+    return render_template('authsuccess.html',stuff=r)
+
+@app.route('/login')
+def login():
+    if 'username' in session:  #check if session is alive 
+        username = session['username']
+        return 'Logged in as ' + username + '<br>' + \
+         "<b><a href = '/spot'>click here to connect spotify</a></b>"
+
+
+    rend=get_file('static/login.html')
+    return Response(rend, mimetype="text/html")
+
+@app.route('/login/result',methods=['POST'])
+def loginr():
+    name = request.form['name'] #get username from form
+    session['username']=name #create session with username
+
+    return 'Logged in as ' + name + '<br>' + \
+         "<b><a href = '/spot'>click here to connect spotify</a></b>"
+@app.route('/logout')
+def logout():
+   # end session
+   session.pop('username', None)
+   return redirect('/login')
+
+
+
+
+
+
+
+
+
+
+
+
