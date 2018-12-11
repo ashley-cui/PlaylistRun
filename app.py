@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 from flask import Flask, request, Response, render_template
 from flaskext.mysql import MySQL
+=======
+from flask import Flask, request, Response, render_template,redirect,session
+>>>>>>> master
 import os.path
 import api
+from spotauth import spt
+
 
 def root_dir():  # pragma: no cover
     return os.path.abspath(os.path.dirname(__file__))
@@ -20,6 +26,7 @@ def get_file(filename):  # pragma: no cover
 
 
 app = Flask(__name__)
+<<<<<<< HEAD
 # mysql = MySQL()
 # app.config['MYSQL_DATABASE_USER'] = 'root'
 # app.config['MYSQL_DATABASE_PASSWORD'] = 'Rish2007'
@@ -29,6 +36,10 @@ app = Flask(__name__)
 
 #conn = mysql.connect()
 #cursor =conn.cursor()
+=======
+app.secret_key="hdfg"
+global sp
+>>>>>>> master
 
 @app.route('/')
 def index():
@@ -60,6 +71,7 @@ def api_demo_result():
     duration = response['rows'][0]['elements'][0]['duration']['text']
 
     return render_template('result.html',origin=origin_formatted, destination=destination_formatted, distance=distance, duration=duration)
+<<<<<<< HEAD
 
 @app.route('/route_demo')
 def route_demo():
@@ -99,3 +111,60 @@ def route_demo_result():
 
 
     return render_template('route_result.html', origin=origin_formatted, distance=distance_formatted, route=route_formatted, end_location = response)
+=======
+@app.route('/spot')
+def spot():
+    global sp
+    if 'username' not in session:
+        return 'Please log in' + '<br>' + \
+         "<b><a href = '/login'>click here to log in</a></b>"
+    sp=spt(session['username'])
+    signin=sp.auth()
+    return redirect(signin)
+@app.route('/callback')
+def callback():
+    global sp
+    if 'username' not in session:
+        return 'Please log in' + '<br>' + \
+         "<b><a href = '/login'>click here to log in</a></b>"
+    sp.callback(request.url)
+    r=sp.playlist()
+
+    return render_template('authsuccess.html',stuff=r)
+
+@app.route('/login')
+def login():
+    if 'username' in session:  #check if session is alive 
+        username = session['username']
+        return 'Logged in as ' + username + '<br>' + \
+         "<b><a href = '/spot'>click here to connect spotify</a></b>"
+
+
+    rend=get_file('static/login.html')
+    return Response(rend, mimetype="text/html")
+
+@app.route('/login/result',methods=['POST'])
+def loginr():
+    name = request.form['name'] #get username from form
+    session['username']=name #create session with username
+
+    return 'Logged in as ' + name + '<br>' + \
+         "<b><a href = '/spot'>click here to connect spotify</a></b>"
+@app.route('/logout')
+def logout():
+   # end session
+   session.pop('username', None)
+   return redirect('/login')
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> master
