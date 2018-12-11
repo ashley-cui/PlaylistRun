@@ -1,4 +1,5 @@
 from flask import Flask, request, Response, render_template
+from flaskext.mysql import MySQL
 import os.path
 import api
 
@@ -19,6 +20,15 @@ def get_file(filename):  # pragma: no cover
 
 
 app = Flask(__name__)
+# mysql = MySQL()
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = 'Rish2007'
+# app.config['MYSQL_DATABASE_DB'] = 'Running_Route'
+# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+# mysql.init_app(app)
+
+#conn = mysql.connect()
+#cursor =conn.cursor()
 
 @app.route('/')
 def index():
@@ -66,6 +76,8 @@ def route_demo_result():
 
 
     #Direction Result Response
+    #[lat,lon] float
+
     response = api.get_direction(origin, distance)
 
     print(response)
