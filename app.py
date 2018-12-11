@@ -50,3 +50,40 @@ def api_demo_result():
     duration = response['rows'][0]['elements'][0]['duration']['text']
 
     return render_template('result.html',origin=origin_formatted, destination=destination_formatted, distance=distance, duration=duration)
+
+@app.route('/route_demo')
+def route_demo():
+    content = get_file('static/route_demo.html')
+    return Response(content, mimetype="text/html")
+
+@app.route('/route_demo/result', methods=['GET'])
+def route_demo_result():
+    # print(request.args)
+    origin = request.args.get('origin')
+    distance = request.args.get('distance')
+
+    #condition
+
+
+    #Direction Result Response
+    response = api.get_direction(origin, distance)
+
+    print(response)
+
+    #status = response['rows'][0]['elements'][0]['status']
+
+    #if status == 'ZERO_RESULTS' or status == 'NOT_FOUND':
+    #    return 'Error finding route'
+
+    #origin_formatted = response['origin_addresses'][0]
+    #destination_formatted = response['destination_addresses'][0]
+    #distance = response['rows'][0]['elements'][0]['distance']['text']
+    #duration = response['rows'][0]['elements'][0]['duration']['text']
+
+    origin_formatted = origin
+    distance_formatted = distance
+    route_formatted = 'Empty Place Holder'
+
+
+
+    return render_template('route_result.html', origin=origin_formatted, distance=distance_formatted, route=route_formatted, end_location = response)
