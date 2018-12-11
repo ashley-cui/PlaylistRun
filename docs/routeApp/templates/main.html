@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+    <META NAME="GENERATOR" Content="Microsoft Visual Studio">
+    <TITLE></TITLE>
+    <link rel="stylesheet" href="../static/main.css" type="text/css" />
+    <style type="text/css">
+    .pace_ {
+        width: 100%;
+        height: 50px;
+        margin-top: 10px;
+        line-height: 20px;
+        text-align: left;
+        text-indent: 5px;
+    }
+    .pace_ img {
+        height: 40px;
+        margin-left: 10px;
+    }
+    .friends_head img {
+        height:20px;
+        margin-left: 10px;
+    }
+    .sel {
+        margin-left: 0px;
+    }  
+    </style>
+</HEAD>
+<BODY>
+    <div class="main">
+        <div class="top">
+            <div class="main_title">
+            </div>
+            <div class="title">CS411 Route System</div>
+            <div class="title_bottom">
+            </div>
+        </div>
+        <div class="layer_one">
+            route system <a href="photo_main">homepage</a>
+            <div class="user">
+                {{username}} <a href="/logout">sign out</a>
+            </div>
+            <div class="user_img">
+            </div>
+        </div>
+        <div class="center_holder">
+            <div class="left">
+                <div class="pace">
+                    {{uname}}
+                </div>
+                <div class="friends_head">
+                    select a song list:
+                </div>
+                <form method="POST">
+                <div class="pace">
+                   <select name="tag_del" class="sel">
+                    {% for tag in data_list %}
+                      <option value ="{{tag[0]}}">{{tag[0]}}</option>
+                    {% endfor %} 
+                    </select> <button action="/get_routes">show saved routes</button>
+                </div>
+                <div class="search">
+                    enter your pace: 
+                </div>
+                <div class="search">
+                    <input>
+                </div>
+                <div class="addablum">
+                    enter your start location:
+                </div>
+                <div class="addablum">
+                    <input>
+                </div>
+                <div class="addablum">
+                    <button action="/generate">generate</button>
+                </div>
+                </form>
+                <div class="addablum">
+                    saved routes for the selected song list:
+                </div>
+            
+            </div>
+            <div class="center">
+                
+            </div>
+        </div>
+        <div class="bot">
+            Produced by Team of Jiafei Xue, Ashley Cui, Sumer Rathinam and Ronnie Shum
+        </div>
+    </div>
+</BODY>
+</HTML>
