@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-from flask import Flask, request, Response, render_template
+
 from flaskext.mysql import MySQL
-=======
 from flask import Flask, request, Response, render_template,redirect,session
->>>>>>> master
 import os.path
 import api
 from spotauth import spt
@@ -26,20 +23,10 @@ def get_file(filename):  # pragma: no cover
 
 
 app = Flask(__name__)
-<<<<<<< HEAD
-# mysql = MySQL()
-# app.config['MYSQL_DATABASE_USER'] = 'root'
-# app.config['MYSQL_DATABASE_PASSWORD'] = 'Rish2007'
-# app.config['MYSQL_DATABASE_DB'] = 'Running_Route'
-# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-# mysql.init_app(app)
 
-#conn = mysql.connect()
-#cursor =conn.cursor()
-=======
 app.secret_key="hdfg"
 global sp
->>>>>>> master
+global duration_ms
 
 @app.route('/')
 def index():
@@ -71,7 +58,7 @@ def api_demo_result():
     duration = response['rows'][0]['elements'][0]['duration']['text']
 
     return render_template('result.html',origin=origin_formatted, destination=destination_formatted, distance=distance, duration=duration)
-<<<<<<< HEAD
+
 
 @app.route('/route_demo')
 def route_demo():
@@ -81,10 +68,15 @@ def route_demo():
 @app.route('/route_demo/result', methods=['GET'])
 def route_demo_result():
     # print(request.args)
+    global duration_ms
     origin = request.args.get('origin')
-    distance = request.args.get('distance')
-
+    #distance = request.args.get('distance')
+    pace = request.args.get('pace')
     #condition
+    duration = float(duration_ms) / 60000
+    distance = duration/float(pace)
+
+
 
 
     #Direction Result Response
@@ -106,12 +98,12 @@ def route_demo_result():
 
     origin_formatted = origin
     distance_formatted = distance
-    route_formatted = 'Empty Place Holder'
 
 
 
-    return render_template('route_result.html', origin=origin_formatted, distance=distance_formatted, route=route_formatted, end_location = response)
-=======
+
+    return render_template('route_result.html', origin=origin_formatted, distance=distance_formatted, end_location = response, pace = pace, duration = duration)
+
 @app.route('/spot')
 def spot():
     global sp
@@ -124,13 +116,15 @@ def spot():
 @app.route('/callback')
 def callback():
     global sp
+    global duration_ms
     if 'username' not in session:
         return 'Please log in' + '<br>' + \
          "<b><a href = '/login'>click here to log in</a></b>"
     sp.callback(request.url)
     r=sp.playlist()
+    duration_ms = r[0][1]
 
-    return render_template('authsuccess.html',stuff=r)
+    return redirect('/route_demo')
 
 @app.route('/login')
 def login():
@@ -167,4 +161,4 @@ def logout():
 
 
 
->>>>>>> master
+
